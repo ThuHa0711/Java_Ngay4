@@ -6,10 +6,8 @@ import java.util.Map;
 
 public class BankReport {
 
+    // Tính tổng số dư của tất cả các tài khoản trong ngân hàng
     public static double getTotalBalance(Bank bank) {
-//        return bank.getAccounts().values().parallelStream()
-//                .mapToDouble(Account::getBalance)
-//                .sum();
         double totalBalance = 0.0;
         Map<Integer, Account> accounts = bank.getAccounts();
         for (Account account : accounts.values()) {
@@ -18,10 +16,8 @@ public class BankReport {
         return totalBalance;
     }
 
+    // Lấy danh sách các tài khoản có số dư vượt ngưỡng cho trước
     public static List<Account> getHighBalanceAccounts(Bank bank, double threshold) {
-//        return bank.getAccounts().values().parallelStream()
-//                .filter(account -> account.getBalance() > threshold)
-//                .collect(Collectors.toList());
         List<Account> highBalanceAccounts = new ArrayList<>();
         Map<Integer, Account> accounts = bank.getAccounts();
         for (Account account : accounts.values()) {
@@ -32,6 +28,7 @@ public class BankReport {
         return highBalanceAccounts;
     }
 
+    // In ra báo cáo tổng hợp ngân hàng
     public static void printReport(Bank bank, double threshold) {
         double totalBalance = getTotalBalance(bank);
         List<Account> highBalanceAccounts = getHighBalanceAccounts(bank, threshold);

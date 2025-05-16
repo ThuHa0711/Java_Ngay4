@@ -3,7 +3,7 @@ package com.example.Java_Ngay4;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncTransactionHandler {
-
+    // Gửi email thông báo giao dịch
     public static void sendTransactionEmail(int accountId, double amount, boolean success) {
         CompletableFuture.runAsync(() -> {
             try {
@@ -19,6 +19,7 @@ public class AsyncTransactionHandler {
         });
     }
 
+    // Tạo báo cáo giao dịch
     public static void generateTransactionReport(int fromAccount, int toAccount, double amount) {
         CompletableFuture.runAsync(() -> {
             try {
