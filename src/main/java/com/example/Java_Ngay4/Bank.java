@@ -1,12 +1,11 @@
 package com.example.Java_Ngay4;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 import java.util.concurrent.Semaphore;
 
 public class Bank {
-    private final Map<Integer, Account> accounts = new ConcurrentHashMap<>();
-    private final Semaphore semaphore = new Semaphore(10); // Giới hạn tối đa 10 giao dịch cùng lúc
+    private final HashMap<Integer, Account> accounts = new HashMap<>();
+    private final Semaphore semaphore = new Semaphore(10);
 
     public void addAccount(Account account) {
         accounts.put(account.getAccountId(), account);
@@ -16,7 +15,7 @@ public class Bank {
         return accounts.get(accountId);
     }
 
-    public Map<Integer, Account> getAccounts() {
+    public HashMap<Integer, Account> getAccounts() {
         return accounts;
     }
 
@@ -27,7 +26,7 @@ public class Bank {
         if (fromAccount == null || toAccount == null) return false;
 
         try {
-            semaphore.acquire(); // Giới hạn số lượng giao dịch
+            semaphore.acquire();
             if (fromAccount.withdraw(amount)) {
                 toAccount.deposit(amount);
                 System.out.printf("Chuyển khoản thành công: %d -> %d, Số tiền: %.2f%n", fromAccountId, toAccountId, amount);
